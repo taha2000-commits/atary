@@ -1,5 +1,11 @@
+import { Outlet } from "react-router";
+
 function App() {
-  return <div className="text-red-500">Atary games</div>;
+  return (
+    <div className="">
+      <Outlet />
+    </div>
+  );
 }
 
 export default App;
