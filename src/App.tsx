@@ -2,7 +2,7 @@ import { Outlet } from "react-router";
 
 function App() {
   return (
-    <div className="">
+    <div className="text-white">
       <Outlet />
     </div>
   );
