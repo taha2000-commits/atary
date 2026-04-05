@@ -3,6 +3,7 @@ import type { Game } from "../../types/game";
 import { Link, useParams } from "react-router";
 import { useTrailers } from "../../services/api/trailers";
 import MasonryTrailers from "./MasonryTrailers";
+import { FOURTH_COLOR } from "../../helpers/consts";
 
 const TrailersSection = ({ game }: { game?: Game }) => {
   const { game_id } = useParams();
@@ -22,7 +23,7 @@ const TrailersSection = ({ game }: { game?: Game }) => {
           <div className="mb-4 flex items-center justify-between">
             <h3 className="flex gap-3 text-2xl font-bold capitalize">
               {game.name} trailers{" "}
-              {isLoadingTrailers && <ClipLoader color="#3b82f6" />}
+              {isLoadingTrailers && <ClipLoader color={FOURTH_COLOR} />}
             </h3>
             {game.movies_count > page_size && (
               <Link

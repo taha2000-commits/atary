@@ -13,6 +13,7 @@ import Pagination from "../../../components/Pagination";
 import { useDevelopmentTeam } from "../../../services/api/development-team";
 import { MdOutlinePerson } from "react-icons/md";
 import { FaArrowLeft } from "react-icons/fa";
+import { FOURTH_COLOR } from "../../../helpers/consts";
 
 const Creators = () => {
   const { game_id } = useParams();
@@ -39,7 +40,7 @@ const Creators = () => {
       <h1 className="mb-3 flex items-center justify-center gap-3 text-center text-4xl font-extrabold">
         {game.name} Creators
         {(isLoadingDevelopmentTeam || isPlaceholderData) && (
-          <ClipLoader color="#3b82f6" />
+          <ClipLoader color={FOURTH_COLOR} />
         )}
       </h1>
       <div className="mb-3 flex items-center justify-between">

@@ -4,6 +4,7 @@ import { useGame } from "../../services/api/game";
 import LandingSection from "./LandingSection";
 import type { Game } from "../../types/game";
 import { useTrailers } from "../../services/api/trailers";
+import LoadingPage from "../loading/LoadingPage";
 
 const GamePage = () => {
   const { game_id } = useParams();
@@ -15,7 +16,7 @@ const GamePage = () => {
     page_size: 12,
   });
 
-  if (isLoading) return <div className="bg-[#0f0f0f] text-white">Loaging</div>;
+  if (isLoading) return <LoadingPage />;
   return (
     <div className="">
       <LandingSection game={game as Game} trailers={trailers} />
