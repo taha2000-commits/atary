@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #151515;
+  --color-secondary: #202020;
+  --color-third: #ffffff1a;
+  --color-fourth: #3b82f6;
+  --font-main: Josefin Sans, sans-serif;
+  --spacing-half: 50%;
+}
+
+* {
+  @apply font-main select-none;
+}
+
+body {
+  @apply w-screen overflow-x-hidden bg-primary;
+}
+
+*::-webkit-scrollbar {
+  @apply h-[2px] w-[2px];
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply bg-third;
+}

@@ -41,25 +41,90 @@ export interface Game {
   esrb_rating: EsrbRating;
   platforms: Platform[];
   parent_platforms: Platform[];
+  genres: Genre[];
+  dominant_color: string;
+  publishers: Publisher[];
+  description_raw: string;
+  tags: Tag[];
+  stores: Store[];
+  developers: Developer[];
+  urls: {
+    title: string;
+    url: string;
+  }[];
+  gamesInSameSeries: Game[];
 }
+export type StoreKey =
+  | "steam"
+  | "playstation"
+  | "apple"
+  | "xbox"
+  | "gog"
+  | "google"
+  | "nintendo"
+  | "itch"
+  | "epic";
+type StoreInfo = {
+  id: number;
+  name: StoreKey;
+  slug: string;
+  domain: string;
+  games_count: number;
+  image_background: string;
+};
 
+export type Store = {
+  id: number;
+  url: string;
+  store: StoreInfo;
+  logo: string;
+};
+export type Genre = {
+  games_count: number;
+  id: number;
+  image_background: string;
+  name: string;
+  slug: string;
+};
 export interface MetacriticPlatform {
   metascore: number;
   url: string;
 }
-
+export type EsrbTitle =
+  | "teen"
+  | "adult"
+  | "mature"
+  | "everyone 10+"
+  | "everyone";
 export interface EsrbRating {
   id: number;
   slug: string;
-  name: string;
+  name: EsrbTitle;
+  age: string;
 }
-
+type Publisher = {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+};
 export interface Platform {
   platform: PlatformInfo;
   released_at: string;
   requirements: Requirements;
+  logo: string;
 }
-
+export type Developer = {
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+  image: string;
+  positions: { id: number; name: string }[];
+  games: Game[];
+};
 export interface PlatformInfo {
   id: number;
   slug: string;
@@ -88,3 +153,19 @@ export interface AddedByStatus {
   dropped: number;
   playing: number;
 }
+
+type Tag = {
+  id: number;
+  name: string;
+  slug: string;
+  language: string;
+  games_count: number;
+  image_background: string;
+};
+export type Achievement = {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  percent: string;
+};
