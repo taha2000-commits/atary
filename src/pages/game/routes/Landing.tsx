@@ -19,7 +19,7 @@ const Landing = () => {
   const navigate = useNavigate();
 
   const { game } = useGame(game_id);
-  
+
   const { developmentTeam, isLoadingDevelopmentTeam } = useDevelopmentTeam(
     game_id,
     { page: 1, page_size: 3 },
