@@ -12,6 +12,7 @@ import GenresSection from "../GenresSection";
 import RatingsChartSection from "../RatingsChartSection";
 import TrailersSection from "../TrailersSection";
 import { useGame } from "../../../services/api/game";
+import { FOURTH_COLOR } from "../../../helpers/consts";
 
 const Landing = () => {
   const { game_id } = useParams();
@@ -62,7 +63,7 @@ const Landing = () => {
                 {game.name} achievements
               </h3>
               {isLoadingGameAchievements ? (
-                <ClipLoader color="#3b82f6" />
+                <ClipLoader color={FOURTH_COLOR} />
               ) : (
                 <Link
                   to={"achievements"}
@@ -215,7 +216,7 @@ const Landing = () => {
                 {game.name} created by
               </h3>
               {isLoadingDevelopmentTeam ? (
-                <ClipLoader color="#3b82f6" />
+                <ClipLoader color={FOURTH_COLOR} />
               ) : (
                 <Link
                   to={"creators"}

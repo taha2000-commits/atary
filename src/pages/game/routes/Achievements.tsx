@@ -7,6 +7,7 @@ import { useState } from "react";
 import PageSizeSelect from "../../../components/PageSizeSelect";
 import Pagination from "../../../components/Pagination";
 import { FaArrowLeft } from "react-icons/fa";
+import { FOURTH_COLOR } from "../../../helpers/consts";
 
 const Achievements = () => {
   const { game_id } = useParams();
@@ -48,7 +49,7 @@ const Achievements = () => {
       <h1 className="mb-3 flex items-center justify-center gap-3 text-center text-4xl font-extrabold">
         {game.name} Achievements
         {(isLoadingGameAchievements || isPlaceholderData) && (
-          <ClipLoader color="#3b82f6" />
+          <ClipLoader color={FOURTH_COLOR} />
         )}
       </h1>
       <div className="mb-3 flex items-center justify-between">

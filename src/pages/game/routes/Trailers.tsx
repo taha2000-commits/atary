@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { ClipLoader } from "react-spinners";
 import { FaArrowLeft, FaPlay } from "react-icons/fa";
 import { useGame } from "../../../services/api/game";
+import { FOURTH_COLOR } from "../../../helpers/consts";
 
 const Trailers = () => {
   const { game_id } = useParams();
@@ -32,7 +33,7 @@ const Trailers = () => {
     <div>
       <h1 className="mb-3 flex items-center justify-center gap-3 text-center text-4xl font-extrabold">
         {game.name} Trailers
-        {isFetching && <ClipLoader color="#3b82f6" />}
+        {isFetching && <ClipLoader color={FOURTH_COLOR} />}
       </h1>
       <div className="mb-3 flex items-center justify-between">
         <div

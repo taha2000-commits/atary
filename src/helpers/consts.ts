@@ -1105,3 +1105,5 @@ export const GAME_PLACEHOLDER = [
       "The Prince has returned! Experience the classic tale that redefined action-adventure gaming in this full-scale remake for a new generation.\n\n- You are the Prince of Persia. Embark on a journey to save your kingdom from the treacherous Vizier.\n- Master the Sands of Time and use your dagger to reverse, accelerate, freeze, and slow time itself.\n- Fight cursed enemies and solve puzzles along the way.\n- Experience incredible graphical enhancements and re-designed gameplay mechanics.\n- Unlock Prince of Persia, the original game from 1989, along your journey.",
   },
 ];
+
+export const FOURTH_COLOR = "#3b82f6";
