@@ -96,7 +96,7 @@ const SideBar = ({
         }}
       >
         <img
-          src="/src/assets/logo.png"
+          src="/logo.png"
           alt=""
           className="h-30 w-30"
         />
