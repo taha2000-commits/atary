@@ -11,7 +11,6 @@ const Navbar = () => {
       <div className="col-span-2 flex items-center justify-center">
         <Link to={"/"} className="">
           <img
-            loading="lazy"
             src="/src/assets/logo.png"
             alt=""
             className="w-20"

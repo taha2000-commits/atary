@@ -96,7 +96,6 @@ const SideBar = ({
         }}
       >
         <img
-          loading="lazy"
           src="/src/assets/logo.png"
           alt=""
           className="h-30 w-30"

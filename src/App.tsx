@@ -5,12 +5,10 @@ import {
   MdOutlineKeyboardDoubleArrowDown,
   MdOutlineKeyboardDoubleArrowUp,
 } from "react-icons/md";
-import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="relative bg-primary text-white">
-      <Navbar />
       <Outlet />
       <TextPopup />
       <VideoPopup />
