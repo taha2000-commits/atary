@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { api, DEV_MODE } from "./api";
+import { api } from "./api";
 import type {
   EsrbRating,
   EsrbTitle,
@@ -10,7 +10,7 @@ import type {
 } from "../../types/game";
 import { assignLogoToPlatform } from "../../helpers/assignLogoToPlatform";
 import { assignLogosAndColorsToRatings } from "../../helpers/assignLogosAndColorsToRatings";
-import { ESRB_RATINGS, GAME_PLACEHOLDER } from "../../helpers/consts";
+import { ESRB_RATINGS } from "../../helpers/consts";
 import { assignLogoToStore } from "../../helpers/assignLogoToStore";
 import { useGamesInSameSeries } from "./games-same-series";
 import { useGameStores } from "./game-stores";
@@ -25,7 +25,7 @@ export const getGameById = async (
   return await api.get(`/games/${id}`);
 };
 
-const addLogoToPlatforms = (arr: Platform[]) => {
+const addLogoToPlatforms = (arr: Platform[] = []) => {
   return arr.map((platform) => {
     return { ...platform, logo: assignLogoToPlatform(platform.platform) };
   });
@@ -58,7 +58,7 @@ const addAgeToEsrb = (rate?: EsrbRating) => {
   if (!rate) return rate;
   return {
     ...rate,
-    age: ESRB_RATINGS[rate.name.toLowerCase() as EsrbTitle].value,
+    age: ESRB_RATINGS[rate.name.toLowerCase() as EsrbTitle]?.value,
   };
 };
 
@@ -88,11 +88,7 @@ function createURLs(game?: Game): {
 export const useGame = (id?: string) => {
   const { data, isLoading } = useQuery({
     queryKey: [`game-${id}`],
-    queryFn: () => {
-      if (DEV_MODE) {
-        return { data: GAME_PLACEHOLDER[0] as unknown as Game };
-      } else return getGameById(id);
-    },
+    queryFn: () => getGameById(id),
   });
 
   const { gamesInSameSeries, isLoading: isLoadingGamesInSameSeries } =
@@ -103,7 +99,7 @@ export const useGame = (id?: string) => {
   return {
     game: {
       ...data?.data,
-      parent_platforms: addLogoToPlatforms(data?.data.parent_platforms || []),
+      parent_platforms: addLogoToPlatforms(data?.data.parent_platforms),
       ratings: addLogosAndColorsToRatings(data?.data.ratings || []),
       esrb_rating: addAgeToEsrb(data?.data.esrb_rating),
       metacritic_url:

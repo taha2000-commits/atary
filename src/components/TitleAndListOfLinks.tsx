@@ -15,7 +15,9 @@ const TitleAndListOfLinks = ({
     <>
       {links?.[0] && (
         <div className={className}>
-          <h5 className="mb-1 text-white/50 capitalize">{title}</h5>
+          <h5 className="mb-1 text-sm text-white/50 capitalize xs:text-md">
+            {title}
+          </h5>
           <div className="flex flex-wrap items-center gap-1">
             {links.map((link, i, arr) => {
               if (pathName)
@@ -23,9 +25,9 @@ const TitleAndListOfLinks = ({
                   <Link
                     key={link.id}
                     to={pathName + "/" + link.id}
-                    className="underline hover:text-white/50"
+                    className="text-sm underline hover:text-white/50 xs:text-md"
                   >
-                    {link.name + (i < arr.length - 1 && ", ")}
+                    {link.name + (i < arr.length - 1 ? ", " : "")}
                   </Link>
                 );
               else

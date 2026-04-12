@@ -64,13 +64,14 @@ export type StoreKey =
   | "nintendo"
   | "itch"
   | "epic";
-type StoreInfo = {
+export type StoreInfo = {
   id: number;
   name: StoreKey;
   slug: string;
   domain: string;
   games_count: number;
   image_background: string;
+  description?: string;
 };
 
 export type Store = {
@@ -85,6 +86,7 @@ export type Genre = {
   image_background: string;
   name: string;
   slug: string;
+  description?: string;
 };
 export interface MetacriticPlatform {
   metascore: number;
@@ -102,12 +104,13 @@ export interface EsrbRating {
   name: EsrbTitle;
   age: string;
 }
-type Publisher = {
+export type Publisher = {
   id: number;
   name: string;
   slug: string;
   games_count: number;
   image_background: string;
+  description?: string;
 };
 export interface Platform {
   platform: PlatformInfo;
@@ -124,6 +127,7 @@ export type Developer = {
   image: string;
   positions: { id: number; name: string }[];
   games: Game[];
+  description?: string;
 };
 export interface PlatformInfo {
   id: number;
@@ -154,13 +158,14 @@ export interface AddedByStatus {
   playing: number;
 }
 
-type Tag = {
+export type Tag = {
   id: number;
   name: string;
   slug: string;
   language: string;
   games_count: number;
   image_background: string;
+  description?: string;
 };
 export type Achievement = {
   id: number;

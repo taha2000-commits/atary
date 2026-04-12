@@ -28,7 +28,7 @@ const Pagination = ({
   const [URLSearchParams, SetURLSearchParams] = useSearchParams();
 
   const numOfPages = count > 0 ? Math.ceil(count / pagination.pageSize) : 0;
-  console.log(numOfPages);
+
 
   const handleToPrev = () => {
     if (pagination.page > 1) {
@@ -51,7 +51,7 @@ const Pagination = ({
   };
   if ([0, 1].includes(numOfPages)) return;
   return (
-    <div className="grid grid-cols-3">
+    <div className="grid w-fit grid-cols-3">
       {isHasPrevious ? (
         <div
           className={`col-span-1 cursor-pointer rounded-lg border border-third p-2 hover:border-fourth hover:text-fourth ${disabled && "pointer-events-none"}`}

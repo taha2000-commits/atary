@@ -2,11 +2,21 @@
 
 @theme {
   --color-primary: #151515;
-  --color-secondary: #202020;
-  --color-third: #ffffff1a;
+  --color-secondary: rgba(255, 255, 255, 0.6);
+  --color-third: #363636;
   --color-fourth: #3b82f6;
   --font-main: Josefin Sans, sans-serif;
   --spacing-half: 50%;
+  --breakpoint-xs: 390px;
+  --tracking-very-wide: 0.5em;
+  --text-md: 16px;
+  --text-9xl: 7rem;
+  --text-10xl: 7.5rem;
+  --text-11xl: 8rem;
+  --text-12xl: 9rem;
+  --text-huge: 10rem;
+  --spacing-100vh: 100vh;
+  --spacing-50vh: 50vh;
 }
 
 * {
@@ -18,9 +28,50 @@ body {
 }
 
 *::-webkit-scrollbar {
-  @apply h-[2px] w-[2px];
+  @apply h-0.5 w-0.5;
 }
 
 *::-webkit-scrollbar-thumb {
   @apply bg-third;
+}
+
+.text-pop-up-scrollbar::-webkit-scrollbar {
+  @apply h-0.5 w-0.5;
+}
+
+.text-pop-up-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-fourth;
+}
+
+.content {
+  @apply text-base leading-relaxed;
+}
+
+.content h1 {
+  @apply mb-4 text-4xl font-bold;
+}
+
+.content h2 {
+  @apply mb-3 text-3xl font-semibold;
+}
+
+.content h3 {
+  @apply mb-2 text-2xl font-semibold;
+}
+
+.content p {
+  @apply mb-4;
+}
+
+.content ul {
+  @apply mb-4 ml-6 list-disc;
+}
+
+.content ol {
+  @apply mb-4 ml-6 list-decimal;
+}
+
+.my-swiper .swiper-button-next,
+.my-swiper .swiper-button-prev {
+  @apply text-white;
 }

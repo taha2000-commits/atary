@@ -32,10 +32,10 @@ const Landing = () => {
 
   if (!game) return null;
   return (
-    <div className="grid w-full grid-cols-2 gap-x-15">
+    <div className="grid w-full grid-cols-2 gap-x-15 gap-y-10">
       {/* ============= */}
-      <div className="col-span-1 flex flex-col gap-6">
-        <div className="grid content-center overflow-hidden">
+      <div className="col-span-2 flex w-full flex-col gap-6 md:col-span-1">
+        <div className="grid w-full content-center overflow-hidden">
           <h3 className="mb-3 text-2xl font-black capitalize">about</h3>
           <Text text={game.description_raw} numOfWords={80} />
         </div>
@@ -43,7 +43,8 @@ const Landing = () => {
 
         <div className="col-span-3">
           <img
-            src={game.background_image_additional}
+            loading="lazy"
+            src={game.background_image_additional || "/"}
             alt=""
             className="h-full w-full"
           />
@@ -56,9 +57,9 @@ const Landing = () => {
         />
         <RequirementsSection platforms={game.platforms} />
 
-        {game.parent_achievements_count && (
+        {gameAchievements?.[0] && (
           <div className="">
-            <div className="flex justify-between">
+            <div className="mb-3 flex flex-wrap justify-between">
               <h3 className="mb-2 text-2xl font-bold capitalize">
                 {game.name} achievements
               </h3>
@@ -69,7 +70,7 @@ const Landing = () => {
                   to={"achievements"}
                   className="flex cursor-pointer items-center gap-2 text-lg text-white/50 capitalize hover:text-white/80"
                 >
-                  <span className="underline">show all</span>
+                  <span className="text-nowrap underline">show all</span>
                   <span className="rounded-full bg-third p-1 px-2 text-sm no-underline">
                     {game.parent_achievements_count}
                   </span>
@@ -81,7 +82,8 @@ const Landing = () => {
                 <div key={achievement.id} className="flex gap-2 bg-third p-2">
                   <div className="h-12 w-12 rounded-xl bg-black">
                     <img
-                      src={achievement.image}
+                      loading="lazy"
+                      src={achievement.image || "/"}
                       alt=""
                       className="h-full w-full object-cover"
                     />
@@ -93,7 +95,7 @@ const Landing = () => {
                         {achievement.description}
                       </p>
                     </div>
-                    <div className="grid h-12 w-12 place-content-center rounded-full bg-white/30">
+                    <div className="grid h-fit place-content-center rounded-full bg-white/30 p-1 md:max-h-12 md:min-h-12 md:max-w-12 md:min-w-12">
                       <span className="text-xs font-bold text-black">
                         {achievement.percent}%
                       </span>
@@ -106,7 +108,7 @@ const Landing = () => {
         )}
       </div>
       {/* ============= */}
-      <div className="col-span-1 flex flex-col gap-6">
+      <div className="col-span-2 flex flex-col gap-6 md:col-span-1">
         <div className="flex flex-col justify-center gap-5">
           <div className="">
             <h5 className="mb-2 text-white/50 capitalize">alternative names</h5>
@@ -133,26 +135,28 @@ const Landing = () => {
             <TitleAndListOfLinks
               title="publishers"
               links={game.publishers}
+              pathName="/publisher"
               className="col-span-3"
             />
             <TitleAndListOfLinks
               title="developers"
               links={game.developers}
+              pathName="/developer"
               className="col-span-3"
             />
 
             {game.released ? (
-              <div className="col-span-2">
+              <div className="col-span-3 text-sm xs:text-md sm:col-span-2">
                 <h5 className="mb-1 text-white/50 capitalize">released</h5>
                 <span>{format(game.released, "MMM dd, yyyy")}</span>
               </div>
             ) : game.tba ? (
-              <div className="col-span-2">
+              <div className="col-span-3 text-sm xs:text-md sm:col-span-2">
                 <h5 className="mb-1 text-white/50 capitalize">released</h5>
                 <span>TBA</span>
               </div>
             ) : null}
-            <div className="col-span-2">
+            <div className="col-span-3 text-sm xs:text-md sm:col-span-2">
               <h5 className="mb-1 text-white/50 capitalize">Age rating</h5>
               <span className="capitalize">
                 {game.esrb_rating?.name
@@ -160,7 +164,7 @@ const Landing = () => {
                   : "not rated"}
               </span>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 text-sm xs:text-md">
               <h5 className="mb-1 flex items-start gap-1 text-white/50 capitalize">
                 Metascore
                 {game.metacritic && (
@@ -201,6 +205,7 @@ const Landing = () => {
         <GenresSection genres={game.genres} />
         <TitleAndListOfLinks
           title="platforms"
+          pathName="/platform"
           links={game.platforms?.map((platform) => {
             return {
               ...platform.platform,
@@ -209,9 +214,9 @@ const Landing = () => {
         />
         <RatingsChartSection ratings={game.ratings} />
 
-        {game.creators_count && (
+        {developmentTeam?.[0] && (
           <div className="">
-            <div className="flex justify-between">
+            <div className="mb-3 flex flex-wrap justify-between">
               <h3 className="mb-2 text-2xl font-bold capitalize">
                 {game.name} created by
               </h3>
@@ -222,7 +227,7 @@ const Landing = () => {
                   to={"creators"}
                   className="flex cursor-pointer items-center gap-2 text-lg text-white/50 capitalize hover:text-white/80"
                 >
-                  <span className="underline">show all</span>
+                  <span className="text-nowrap underline">show all</span>
                   <span className="rounded-full bg-third p-1 px-2 text-sm no-underline">
                     {game.creators_count}
                   </span>
@@ -233,32 +238,36 @@ const Landing = () => {
               {developmentTeam?.map((developer) => (
                 <div
                   key={developer.id}
-                  onClick={() => navigate(`/developer/${developer.id}`)}
+                  onClick={() => navigate(`/creator/${developer.id}`)}
                   className="flex overflow-hidden rounded-3xl bg-third"
                 >
                   <div
-                    className="col-span-1 w-25 bg-cover"
+                    className="col-span-1 w-25 min-w-25 bg-cover"
                     style={{
                       backgroundImage: `url(${developer.image_background})`,
                     }}
                   >
                     <div className="flex h-full w-full items-center justify-center bg-black/60">
                       <img
-                        src={developer.image}
+                        loading="lazy"
+                        src={developer.image || "/"}
                         alt=""
                         className="h-12 w-12 rounded-full object-cover"
                       />
                     </div>
                   </div>
                   <div className="col-span-3 flex flex-col justify-evenly gap-3 p-2">
-                    <div className="flex items-center gap-2">
-                      <h5 className="text-xl font-bold text-white">
+                    <div className="flex flex-wrap items-center gap-x-2">
+                      <Link
+                        to={`/creator/${developer.name}`}
+                        className="text-xl font-bold text-white underline-offset-4 hover:text-white/50 hover:underline"
+                      >
                         {developer.name}
-                      </h5>
-                      <div className="flex items-center">
+                      </Link>
+                      <div className="flex items-center text-xs xs:text-sm">
                         (
                         {developer.positions?.map((pos, i, arr) => (
-                          <span key={pos.id} className="text-sm text-white/50">
+                          <span key={pos.id} className="text-white/50">
                             {pos.name + (i < arr.length - 1 ? " ," : "")}
                           </span>
                         ))}

@@ -4,7 +4,7 @@ import type { Rating } from "../../types/game";
 const RatingsChartSection = ({ ratings }: { ratings: Rating[] }) => {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-2">
-      <div className="mb-2 text-2xl font-bold capitalize w-full">ratings</div>
+      <div className="mb-2 w-full text-2xl font-bold capitalize">ratings</div>
       <PieChart
         style={{
           width: "80%",
@@ -39,14 +39,17 @@ const RatingsChartSection = ({ ratings }: { ratings: Rating[] }) => {
           ]}
         />
       </PieChart>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-5 mt-3">
         {ratings.map((rate) => (
-          <div key={rate.id} className="flex items-center gap-1 text-lg">
+          <div
+            key={rate.id}
+            className="flex flex-col items-center gap-1 text-sm sm:flex-row sm:text-lg"
+          >
             <span
-              className={`block h-2 w-2 rounded-full`}
+              className={`block h-3 w-3 rounded-full`}
               style={{ backgroundColor: `#${rate.color}` }}
             ></span>
-            <span className="capitalize">
+            <span className="flex w-full flex-col items-center gap-1 capitalize sm:flex-row">
               {rate.title + " "}
               <span className="text-sm text-white/40">{rate.count}</span>
             </span>

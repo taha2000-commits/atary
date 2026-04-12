@@ -15,10 +15,25 @@ const LinksTable = ({
       </div>
       {urls.map((url, i) => (
         <div key={i} className="grid grid-cols-7 border-b border-b-third">
-          <span className="col-span-1 border-r border-r-third py-1 capitalize">
+          <span className="col-span-1 hidden border-r border-r-third py-1 capitalize sm:inline-block">
             {url.title}
           </span>
-          <span className="col-span-5 flex items-center truncate p-1 text-sm text-white/70">
+          <span className="col-span-1 flex items-center justify-center border-r border-r-third py-1 capitalize sm:hidden">
+            <img
+              loading="lazy"
+              src={
+                url.title === "metacritic"
+                  ? "/src/assets/metacritic-logo.png"
+                  : url.title == "reddit"
+                    ? "/src/assets/reddit-logo.png"
+                    : "/"
+              }
+              alt=""
+              className="h-6 w-6"
+            />
+          </span>
+
+          <span className="col-span-5 flex w-full items-center truncate p-1 text-sm text-white/70">
             {url.url}
           </span>
           <a

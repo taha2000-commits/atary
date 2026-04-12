@@ -1,8 +1,7 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { api, DEV_MODE } from "./api";
+import { api } from "./api";
 import type { Trailer } from "../../types/trailer";
 import type { RequestParams, Response } from "../../types/response";
-import { TRAILERS_PLACEHOLDER } from "../../helpers/consts";
 import type { AxiosResponse } from "axios";
 
 export const getTrailers = async (
@@ -10,7 +9,7 @@ export const getTrailers = async (
   params?: RequestParams,
 ): Promise<{ data: Response<Trailer> } | null> => {
   if (!id) return null;
-  return await api.get(`https://api.rawg.io/api/games/${id}/movies`, {
+  return await api.get(`/games/${id}/movies`, {
     params,
   });
 };
@@ -18,15 +17,7 @@ export const getTrailers = async (
 export const useTrailers = (id?: string, params?: RequestParams) => {
   const { data, isLoading } = useQuery({
     queryKey: [`game-${id}-trailers`, params || {}],
-    queryFn: () => {
-      if (DEV_MODE) {
-        return new Promise((res) =>
-          res({
-            data: { results: TRAILERS_PLACEHOLDER.slice(0, params?.page_size) },
-          }),
-        );
-      } else return getTrailers(id, params);
-    },
+    queryFn: () => getTrailers(id, params),
   });
   return {
     data: (data as AxiosResponse)?.data,
@@ -37,7 +28,7 @@ export const useTrailers = (id?: string, params?: RequestParams) => {
 
 export const useInfinityTrailers = (params: RequestParams, id?: string) => {
   return useInfiniteQuery({
-    queryKey: ["trailerss"],
+    queryKey: ["trailers"],
     queryFn: ({ pageParam }) =>
       getTrailers(id, { page: pageParam, page_size: params.page_size }),
     initialPageParam: 1,

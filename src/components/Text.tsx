@@ -1,34 +1,45 @@
+import { useTextPopupContext } from "../context/TextPopupContext";
+
 const Text = ({
   numOfWords,
   text,
   className,
+  isHtml = false,
 }: {
   numOfWords: number;
   text?: string;
   className?: string;
+  isHtml?: boolean;
 }) => {
+  const { openPopup } = useTextPopupContext();
   if (!text) return null;
 
   const arrOfWords = text.split(" ");
   const isTextTall = arrOfWords.length > numOfWords;
-  console.log(arrOfWords.length);
-
+  const txt = !isTextTall
+    ? text
+    : text.split(" ").slice(0, numOfWords).join(" ") + "...";
   return (
-    <p className={`text-justify text-pretty ${className || ""}`}>
-      {!isTextTall
-        ? text
-        : text.split(" ").slice(0, numOfWords).join(" ") + "..."}{" "}
+    <div className={`${className || "text-justify text-pretty"} `}>
+      {isHtml ? (
+        <div
+          className="content"
+          dangerouslySetInnerHTML={{ __html: txt }}
+        ></div>
+      ) : (
+        txt
+      )}{" "}
       {isTextTall && (
         <span
           className="cursor-pointer text-sm capitalize underline underline-offset-1 hover:text-white/50"
           onClick={() => {
-            console.log(text);
+            openPopup(text);
           }}
         >
           show more
         </span>
       )}
-    </p>
+    </div>
   );
 };
 

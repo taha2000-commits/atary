@@ -46,7 +46,7 @@ const Trailers = () => {
         </div>
       </div>
       <div className="">
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {flatPages.map((video) => (
             <div key={video.id} className="col-span-1 h-full w-full">
               <div className="overflow-hidden rounded-2xl bg-third">
@@ -57,7 +57,8 @@ const Trailers = () => {
                     </div>
                   </div>
                   <img
-                    src={video.preview}
+                    loading="lazy"
+                    src={video.preview || "/"}
                     alt={video.name}
                     className="z-0 w-full"
                   />

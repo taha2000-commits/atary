@@ -20,10 +20,10 @@ const GamePage = () => {
   return (
     <div className="">
       <LandingSection game={game as Game} trailers={trailers} />
-      <div className="mx-auto w-[80%] py-10">
-        <Outlet />
-
-        {/* ================= */}
+      <div className="absolute top-100vh bg-linear-to-b from-0% to-primary to-[100px]">
+        <div className="mx-auto w-full px-3 py-10 xs:px-7 sm:w-[80%] sm:px-0">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

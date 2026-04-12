@@ -29,20 +29,22 @@ const RequirementsSection = ({
           key={p.platform.id}
           className="grid grid-cols-7 border-b border-b-third"
         >
-          <span className="col-span-2 border-r border-r-third py-1 capitalize">
+          <span className="col-span-2 border-r border-r-third py-1 text-xs capitalize xs:text-sm">
             {p.platform.name}
           </span>
           <span className="col-span-5 p-2 text-sm text-white/70">
-            <div className="flex w-full items-center justify-end">
-              <IoIosArrowDown
-                onClick={() =>
-                  setRequirementOpen(({ is }) => {
-                    return { index, is: !is };
-                  })
-                }
-                className={`transition-all duration-500 ${Object.keys(p.requirements)?.[0] ? "cursor-pointer hover:text-fourth" : "pointer-events-none"} ${requirementOpen.index == index && requirementOpen.is ? "rotate-180" : "rotate-0"}`}
-              />
-            </div>
+            {(p.requirements.minimum || p.requirements.recommended) && (
+              <div className="flex w-full items-center justify-end">
+                <IoIosArrowDown
+                  onClick={() =>
+                    setRequirementOpen(({ is }) => {
+                      return { index, is: !is };
+                    })
+                  }
+                  className={`transition-all duration-500 ${Object.keys(p.requirements)?.[0] ? "cursor-pointer hover:text-fourth" : "pointer-events-none"} ${requirementOpen.index == index && requirementOpen.is ? "rotate-180" : "rotate-0"}`}
+                />
+              </div>
+            )}
             {requirementOpen.index == index && requirementOpen.is
               ? Object.keys(p.requirements)?.[0] && (
                   <>
