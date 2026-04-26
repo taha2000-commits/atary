@@ -39,7 +39,7 @@ const GameCard = ({
         )}
         <img
           loading="lazy"
-          src={game.background_image || "/src/assets/logo.png"}
+          src={game.background_image || "/logo.png"}
           className="aspect-video w-full bg-primary object-cover"
         />
 
@@ -91,7 +91,7 @@ const GameCard = ({
             )}
             <img
               loading="lazy"
-              src={game.background_image || "/src/assets/logo.png"}
+              src={game.background_image || "/logo.png"}
               className="h-52 w-full bg-primary object-cover"
             />
 

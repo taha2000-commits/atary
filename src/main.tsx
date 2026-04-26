@@ -4,7 +4,6 @@ import "./index.css";
 import { router } from "./services/routes/router";
 import { RouterProvider } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { TextPopupContextProvider } from "./context/TextPopupContext";
 import { VideoPopupContextProvider } from "./context/VideoPopupContext";
 import LoadingPage from "./pages/loading/LoadingPage";
@@ -21,7 +20,6 @@ createRoot(document.getElementById("root")!).render(
           </Suspense>
         </TextPopupContextProvider>
       </VideoPopupContextProvider>
-      <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" />
     </QueryClientProvider>
   </StrictMode>,
 );

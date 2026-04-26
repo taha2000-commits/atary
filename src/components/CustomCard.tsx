@@ -38,7 +38,7 @@ const CustomCard = ({
           {data.image && (
             <img
               loading="lazy"
-              src={data.image || "/src/assets/profile.jpg"}
+              src={data.image || "/profile.jpg"}
               alt=""
               className="h-24 w-24 rounded-full bg-gray-500 object-cover"
             />

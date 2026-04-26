@@ -23,9 +23,9 @@ const LinksTable = ({
               loading="lazy"
               src={
                 url.title === "metacritic"
-                  ? "/src/assets/metacritic-logo.png"
+                  ? "/metacritic-logo.png"
                   : url.title == "reddit"
-                    ? "/src/assets/reddit-logo.png"
+                    ? "/reddit-logo.png"
                     : "/"
               }
               alt=""
